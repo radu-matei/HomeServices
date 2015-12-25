@@ -51,7 +51,13 @@ namespace HomeServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CustomerId,ServiceId,BeginDateTime,EndDateTime")] Order order)
         {
+
             string userId = User.Identity.GetUserId();
+            var customer = db.Customers.FirstOrDefault(c => c.ApplicationUserId == userId);
+
+            if (customer == null)
+                return RedirectToAction("Create", "Customers");
+
             order.CustomerId = db.Customers.FirstOrDefault(c => c.ApplicationUserId == userId).Id;
 
             if (ModelState.IsValid)
