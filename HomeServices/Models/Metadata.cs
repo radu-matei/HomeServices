@@ -55,4 +55,16 @@ namespace HomeServices.Models
         [Display(Name = "Department Name")]
         public string Name { get; set; }
     }
+
+    public class ServiceMetadata
+    {
+        [Required]
+        [Display(Name = "Service Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Hourly Rate in Euro")]
+        [Range(0, Double.MaxValue, ErrorMessage = "Invalid Hourly Rate")]
+        public decimal HourlyRate { get; set; }
+    }
 }

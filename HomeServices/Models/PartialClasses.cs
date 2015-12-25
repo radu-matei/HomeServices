@@ -13,4 +13,10 @@ namespace HomeServices.Models
     {
 
     }
+
+    [MetadataType(typeof(ServiceMetadata))]
+    public partial class Service
+    {
+
+    }
 }
