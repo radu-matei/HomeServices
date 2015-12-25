@@ -143,6 +143,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Customers">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -194,6 +206,10 @@
           <AssociationSet Name="FK_EmployeeServices_Services" Association="Self.FK_EmployeeServices_Services">
             <End Role="Service" EntitySet="Service" />
             <End Role="EmployeeService" EntitySet="EmployeeService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Service" Association="Self.FK_Order_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
             <End Role="Customer" EntitySet="Customer" />
@@ -289,6 +305,7 @@
           <Property Name="EndDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="EmployeePlanifications" Relationship="Self.FK_EmployeePlanification_Orders" FromRole="Order" ToRole="EmployeePlanification" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Order_Service" FromRole="Order" ToRole="Service" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -300,6 +317,7 @@
           <Property Name="HourlyRate" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Services_Departments" FromRole="Service" ToRole="Department" />
           <NavigationProperty Name="EmployeeServices" Relationship="Self.FK_EmployeeServices_Services" FromRole="Service" ToRole="EmployeeService" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Service" FromRole="Service" ToRole="Order" />
         </EntityType>
         <Association Name="FK_Orders_Customers">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -385,6 +403,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HomeServicesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
@@ -420,6 +450,10 @@
           <AssociationSet Name="FK_EmployeeServices_Services" Association="Self.FK_EmployeeServices_Services">
             <End Role="Service" EntitySet="Services" />
             <End Role="EmployeeService" EntitySet="EmployeeServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Service" Association="Self.FK_Order_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
       </Schema>

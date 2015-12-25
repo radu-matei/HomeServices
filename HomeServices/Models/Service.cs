@@ -18,6 +18,7 @@ namespace HomeServices.Models
         public Service()
         {
             this.EmployeeServices = new HashSet<EmployeeService>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace HomeServices.Models
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeService> EmployeeServices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

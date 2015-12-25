@@ -29,5 +29,6 @@ namespace HomeServices.Models
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeePlanification> EmployeePlanifications { get; set; }
+        public virtual Service Service { get; set; }
     }
 }
