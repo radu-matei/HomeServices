@@ -25,4 +25,10 @@ namespace HomeServices.Models
     {
 
     }
+
+    [MetadataType(typeof(CustomerMetadata))]
+    public partial class Customer
+    {
+
+    }
 }

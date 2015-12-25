@@ -21,10 +21,13 @@ namespace HomeServices.Models
         [Display(Name = "Individual Identification Number")]
         public string IdentificationNumber { get; set; }
 
+        [Required]
         public string County { get; set; }
 
+        [Required]
         public string City { get; set; }
 
+        [Required]
         public string Street { get; set; }
 
         public Nullable<int> Number { get; set; }
@@ -79,5 +82,39 @@ namespace HomeServices.Models
         [Display(Name = "End Time")]
         [DataType(DataType.Date)]
         public System.DateTime EndDateTime { get; set; }
+    }
+
+    public class CustomerMetadata
+    {
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        public string County { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        public string Street { get; set; }
+
+        public Nullable<int> Number { get; set; }
+
+
+        [Required]
+        [StringLength(1, ErrorMessage = "The gender must be either M of F")]
+        [RegularExpression(@"M|m|f|F", ErrorMessage = "The gender must be either M of F")]
+        public string Gender { get; set; }
+
+
+        [Required]
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
     }
 }
