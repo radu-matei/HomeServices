@@ -48,4 +48,11 @@ namespace HomeServices.Models
         [Range(0, Double.MaxValue, ErrorMessage = "Invalid Salary")]
         public decimal Salary { get; set; }
     }
+
+    public class DepartmentMetadata
+    {
+        [Required]
+        [Display(Name = "Department Name")]
+        public string Name { get; set; }
+    }
 }

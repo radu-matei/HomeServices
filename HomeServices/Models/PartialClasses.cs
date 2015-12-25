@@ -7,4 +7,10 @@ namespace HomeServices.Models
     {
         
     }
+
+    [MetadataType(typeof(DepartmentMetadata))]
+    public partial class Department
+    {
+
+    }
 }
