@@ -67,4 +67,17 @@ namespace HomeServices.Models
         [Range(0, Double.MaxValue, ErrorMessage = "Invalid Hourly Rate")]
         public decimal HourlyRate { get; set; }
     }
+
+    public class OrderMetadata
+    {
+        [Required]
+        [Display(Name = "Start Time")]
+        [DataType(DataType.Date)]
+        public System.DateTime BeginDateTime { get; set; }
+
+        [Required]
+        [Display(Name = "End Time")]
+        [DataType(DataType.Date)]
+        public System.DateTime EndDateTime { get; set; }
+    }
 }

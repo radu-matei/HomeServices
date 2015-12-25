@@ -19,4 +19,10 @@ namespace HomeServices.Models
     {
 
     }
+
+    [MetadataType(typeof(OrderMetadata))]
+    public partial class Order
+    {
+
+    }
 }
