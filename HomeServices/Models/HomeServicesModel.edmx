@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HomeServicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HomeServicesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
@@ -179,6 +179,104 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationUserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="County" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="InsertDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentId" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdentificationNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="County" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+          <Parameter Name="DateOfHire" Type="datetime" Mode="In" />
+          <Parameter Name="Salary" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="InsertOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+          <Parameter Name="ServiceId" Type="int" Mode="In" />
+          <Parameter Name="BeginDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="EndDateTime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="InsertService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DepartmentId" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="HourlyRate" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="UpdateCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="ApplicationUserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="County" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UpdateDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="DepartmentId" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdentificationNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="County" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Street" Type="nvarchar" Mode="In" />
+          <Parameter Name="Number" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="DateOfBirth" Type="datetime" Mode="In" />
+          <Parameter Name="DateOfHire" Type="datetime" Mode="In" />
+          <Parameter Name="Salary" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="UpdateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="CustomerId" Type="int" Mode="In" />
+          <Parameter Name="ServiceId" Type="int" Mode="In" />
+          <Parameter Name="BeginDateTime" Type="datetime" Mode="In" />
+          <Parameter Name="EndDateTime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UpdateService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="DepartmentId" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="HourlyRate" Type="decimal" Mode="In" />
+        </Function>
         <EntityContainer Name="HomeServicesModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -220,8 +318,7 @@
             <End Role="Service" EntitySet="Service" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HomeServicesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -477,6 +574,36 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="HomeServicesModel.Customer">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="HomeServicesModel.Store.InsertCustomer">
+                  <ScalarProperty Name="DateOfBirth" ParameterName="DateOfBirth" />
+                  <ScalarProperty Name="Gender" ParameterName="Gender" />
+                  <ScalarProperty Name="Number" ParameterName="Number" />
+                  <ScalarProperty Name="Street" ParameterName="Street" />
+                  <ScalarProperty Name="City" ParameterName="City" />
+                  <ScalarProperty Name="County" ParameterName="County" />
+                  <ScalarProperty Name="LastName" ParameterName="LastName" />
+                  <ScalarProperty Name="FirstName" ParameterName="FirstName" />
+                  <ScalarProperty Name="ApplicationUserId" ParameterName="ApplicationUserId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="HomeServicesModel.Store.UpdateCustomer">
+                  <ScalarProperty Name="DateOfBirth" ParameterName="DateOfBirth" Version="Current" />
+                  <ScalarProperty Name="Gender" ParameterName="Gender" Version="Current" />
+                  <ScalarProperty Name="Number" ParameterName="Number" Version="Current" />
+                  <ScalarProperty Name="Street" ParameterName="Street" Version="Current" />
+                  <ScalarProperty Name="City" ParameterName="City" Version="Current" />
+                  <ScalarProperty Name="County" ParameterName="County" Version="Current" />
+                  <ScalarProperty Name="LastName" ParameterName="LastName" Version="Current" />
+                  <ScalarProperty Name="FirstName" ParameterName="FirstName" Version="Current" />
+                  <ScalarProperty Name="ApplicationUserId" ParameterName="ApplicationUserId" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="HomeServicesModel.Store.DeleteCustomer">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="HomeServicesModel.Department">
@@ -484,6 +611,20 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="HomeServicesModel.Department">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="HomeServicesModel.Store.InsertDepartment">
+                  <ScalarProperty Name="Name" ParameterName="Name" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="HomeServicesModel.Store.UpdateDepartment">
+                  <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="HomeServicesModel.Store.DeleteDepartment">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
@@ -503,6 +644,42 @@
                 <ScalarProperty Name="DateOfHire" ColumnName="DateOfHire" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="HomeServicesModel.Employee">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="HomeServicesModel.Store.InsertEmployee">
+                  <ScalarProperty Name="Salary" ParameterName="Salary" />
+                  <ScalarProperty Name="DateOfHire" ParameterName="DateOfHire" />
+                  <ScalarProperty Name="DateOfBirth" ParameterName="DateOfBirth" />
+                  <ScalarProperty Name="Gender" ParameterName="Gender" />
+                  <ScalarProperty Name="Number" ParameterName="Number" />
+                  <ScalarProperty Name="Street" ParameterName="Street" />
+                  <ScalarProperty Name="City" ParameterName="City" />
+                  <ScalarProperty Name="County" ParameterName="County" />
+                  <ScalarProperty Name="IdentificationNumber" ParameterName="IdentificationNumber" />
+                  <ScalarProperty Name="LastName" ParameterName="LastName" />
+                  <ScalarProperty Name="FirstName" ParameterName="FirstName" />
+                  <ScalarProperty Name="DepartmentId" ParameterName="DepartmentId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="HomeServicesModel.Store.UpdateEmployee">
+                  <ScalarProperty Name="Salary" ParameterName="Salary" Version="Current" />
+                  <ScalarProperty Name="DateOfHire" ParameterName="DateOfHire" Version="Current" />
+                  <ScalarProperty Name="DateOfBirth" ParameterName="DateOfBirth" Version="Current" />
+                  <ScalarProperty Name="Gender" ParameterName="Gender" Version="Current" />
+                  <ScalarProperty Name="Number" ParameterName="Number" Version="Current" />
+                  <ScalarProperty Name="Street" ParameterName="Street" Version="Current" />
+                  <ScalarProperty Name="City" ParameterName="City" Version="Current" />
+                  <ScalarProperty Name="County" ParameterName="County" Version="Current" />
+                  <ScalarProperty Name="IdentificationNumber" ParameterName="IdentificationNumber" Version="Current" />
+                  <ScalarProperty Name="LastName" ParameterName="LastName" Version="Current" />
+                  <ScalarProperty Name="FirstName" ParameterName="FirstName" Version="Current" />
+                  <ScalarProperty Name="DepartmentId" ParameterName="DepartmentId" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="HomeServicesModel.Store.DeleteEmployee">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeePlanifications">
@@ -534,6 +711,26 @@
                 <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="HomeServicesModel.Order">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="HomeServicesModel.Store.InsertOrder">
+                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" />
+                  <ScalarProperty Name="BeginDateTime" ParameterName="BeginDateTime" />
+                  <ScalarProperty Name="ServiceId" ParameterName="ServiceId" />
+                  <ScalarProperty Name="CustomerId" ParameterName="CustomerId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="HomeServicesModel.Store.UpdateOrder">
+                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" Version="Current" />
+                  <ScalarProperty Name="BeginDateTime" ParameterName="BeginDateTime" Version="Current" />
+                  <ScalarProperty Name="ServiceId" ParameterName="ServiceId" Version="Current" />
+                  <ScalarProperty Name="CustomerId" ParameterName="CustomerId" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="HomeServicesModel.Store.DeleteOrder">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="HomeServicesModel.Service">
@@ -543,6 +740,24 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="HourlyRate" ColumnName="HourlyRate" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="HomeServicesModel.Service">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="HomeServicesModel.Store.InsertService">
+                  <ScalarProperty Name="HourlyRate" ParameterName="HourlyRate" />
+                  <ScalarProperty Name="Name" ParameterName="Name" />
+                  <ScalarProperty Name="DepartmentId" ParameterName="DepartmentId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="HomeServicesModel.Store.UpdateService">
+                  <ScalarProperty Name="HourlyRate" ParameterName="HourlyRate" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+                  <ScalarProperty Name="DepartmentId" ParameterName="DepartmentId" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="Id" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="HomeServicesModel.Store.DeleteService">
+                  <ScalarProperty Name="Id" ParameterName="Id" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>
