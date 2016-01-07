@@ -27,7 +27,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            Department department = db.GetDepartmentById(id).FirstOrDefault();
             if (department == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            Department department = db.GetDepartmentById(id).FirstOrDefault();
             if (department == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = db.Departments.Find(id);
+            Department department = db.GetDepartmentById(id).FirstOrDefault();
             if (department == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace HomeServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Department department = db.Departments.Find(id);
+            Department department = db.GetDepartmentById(id).FirstOrDefault();
             db.Departments.Remove(department);
             db.SaveChanges();
             return RedirectToAction("Index");
