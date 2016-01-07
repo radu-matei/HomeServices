@@ -29,7 +29,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = db.GetOrderById(id).FirstOrDefault();
             if (order == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = db.GetOrderById(id).FirstOrDefault();
             if (order == null)
             {
                 return HttpNotFound();
@@ -111,7 +111,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = db.GetOrderById(id).FirstOrDefault();
             if (order == null)
             {
                 return HttpNotFound();
@@ -124,7 +124,7 @@ namespace HomeServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Order order = db.Orders.Find(id);
+            Order order = db.GetOrderById(id).FirstOrDefault();
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
