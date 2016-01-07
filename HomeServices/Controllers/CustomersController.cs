@@ -28,7 +28,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = db.GetCustomerById(id).FirstOrDefault();
             if (customer == null)
             {
                 return HttpNotFound();
@@ -69,7 +69,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = db.GetCustomerById(id).FirstOrDefault();
             if (customer == null)
             {
                 return HttpNotFound();
@@ -102,7 +102,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = db.GetCustomerById(id).FirstOrDefault();
             if (customer == null)
             {
                 return HttpNotFound();
@@ -115,7 +115,7 @@ namespace HomeServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customers.Find(id);
+            Customer customer = db.GetCustomerById(id).FirstOrDefault();
             db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
