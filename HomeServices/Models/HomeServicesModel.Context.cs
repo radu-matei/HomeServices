@@ -12,6 +12,8 @@ namespace HomeServices.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class HomeServicesEntities : DbContext
     {
@@ -32,5 +34,55 @@ namespace HomeServices.Models
         public virtual DbSet<EmployeeService> EmployeeServices { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Service> Services { get; set; }
+    
+        public virtual ObjectResult<Department> GetDepartments()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Department>("GetDepartments");
+        }
+    
+        public virtual ObjectResult<Department> GetDepartments(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Department>("GetDepartments", mergeOption);
+        }
+    
+        public virtual ObjectResult<Employee> GetEmployees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetEmployees");
+        }
+    
+        public virtual ObjectResult<Employee> GetEmployees(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetEmployees", mergeOption);
+        }
+    
+        public virtual ObjectResult<Order> GetOrders()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Order>("GetOrders");
+        }
+    
+        public virtual ObjectResult<Order> GetOrders(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Order>("GetOrders", mergeOption);
+        }
+    
+        public virtual ObjectResult<Service> GetServices()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("GetServices");
+        }
+    
+        public virtual ObjectResult<Service> GetServices(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("GetServices", mergeOption);
+        }
+    
+        public virtual ObjectResult<Customer> GetCustomers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Customer>("GetCustomers");
+        }
+    
+        public virtual ObjectResult<Customer> GetCustomers(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Customer>("GetCustomers", mergeOption);
+        }
     }
 }

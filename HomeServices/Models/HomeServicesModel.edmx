@@ -144,7 +144,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Service">
-          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Service">
@@ -168,7 +170,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Services_Departments">
-          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Service" Type="Self.Service" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
@@ -194,6 +198,13 @@
         <Function Name="DeleteService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetCustomers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDepartments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetEmployeePlanification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetEmployeeServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="InsertCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ApplicationUserId" Type="nvarchar" Mode="In" />
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
@@ -552,6 +563,11 @@
             <End Role="Service" EntitySet="Services" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <FunctionImport Name="GetDepartments" EntitySet="Departments" ReturnType="Collection(HomeServicesModel.Department)" />
+          <FunctionImport Name="GetEmployees" EntitySet="Employees" ReturnType="Collection(HomeServicesModel.Employee)" />
+          <FunctionImport Name="GetOrders" EntitySet="Orders" ReturnType="Collection(HomeServicesModel.Order)" />
+          <FunctionImport Name="GetServices" EntitySet="Services" ReturnType="Collection(HomeServicesModel.Service)" />
+          <FunctionImport Name="GetCustomers" EntitySet="Customers" ReturnType="Collection(HomeServicesModel.Customer)" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -760,6 +776,11 @@
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDepartments" FunctionName="HomeServicesModel.Store.GetDepartments" />
+          <FunctionImportMapping FunctionImportName="GetEmployees" FunctionName="HomeServicesModel.Store.GetEmployees" />
+          <FunctionImportMapping FunctionImportName="GetOrders" FunctionName="HomeServicesModel.Store.GetOrders" />
+          <FunctionImportMapping FunctionImportName="GetServices" FunctionName="HomeServicesModel.Store.GetServices" />
+          <FunctionImportMapping FunctionImportName="GetCustomers" FunctionName="HomeServicesModel.Store.GetCustomers" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
