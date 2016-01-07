@@ -17,7 +17,7 @@ namespace HomeServices.Controllers
         // GET: Departments
         public ActionResult Index()
         {
-            return View(db.Departments.ToList());
+            return View(db.GetDepartments().ToList());
         }
 
         // GET: Departments/Details/5

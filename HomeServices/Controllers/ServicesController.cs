@@ -17,7 +17,7 @@ namespace HomeServices.Controllers
         // GET: Services
         public ActionResult Index()
         {
-            var services = db.Services.Include(s => s.Department);
+            var services = db.GetServices();
             return View(services.ToList());
         }
 

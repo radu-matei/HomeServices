@@ -18,7 +18,7 @@ namespace HomeServices.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Customer).Include(o => o.Service);
+            var orders = db.GetOrders();
             return View(orders.ToList());
         }
 

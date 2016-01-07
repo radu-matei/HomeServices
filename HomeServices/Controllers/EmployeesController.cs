@@ -17,7 +17,7 @@ namespace HomeServices.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Department);
+            var employees = db.GetEmployees();
             return View(employees.ToList());
         }
 

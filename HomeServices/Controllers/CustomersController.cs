@@ -18,7 +18,7 @@ namespace HomeServices.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            return View(db.GetCustomers().ToList());
         }
 
         // GET: Customers/Details/5
