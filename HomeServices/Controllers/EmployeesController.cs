@@ -28,7 +28,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.GetEmployeeById(id).FirstOrDefault();
             if (employee == null)
             {
                 return HttpNotFound();
@@ -68,7 +68,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.GetEmployeeById(id).FirstOrDefault();
             if (employee == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace HomeServices.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.GetEmployeeById(id).FirstOrDefault();
             if (employee == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace HomeServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.GetEmployeeById(id).FirstOrDefault();
             db.Employees.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
