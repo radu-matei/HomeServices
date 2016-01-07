@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -165,7 +164,6 @@ namespace HomeServices.Controllers
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
@@ -189,7 +187,6 @@ namespace HomeServices.Controllers
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
-            // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
@@ -270,7 +267,6 @@ namespace HomeServices.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -303,7 +299,6 @@ namespace HomeServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
-            // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
@@ -332,7 +327,6 @@ namespace HomeServices.Controllers
         }
 
 #region Helpers
-        // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
         private IAuthenticationManager AuthenticationManager
