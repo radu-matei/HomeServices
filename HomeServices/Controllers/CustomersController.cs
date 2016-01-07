@@ -84,6 +84,8 @@ namespace HomeServices.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ApplicationUserId,FirstName,LastName,County,City,Street,Number,Gender,DateOfBirth")] Customer customer)
         {
+            customer.ApplicationUserId = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = EntityState.Modified;
