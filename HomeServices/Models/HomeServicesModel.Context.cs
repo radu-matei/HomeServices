@@ -84,5 +84,95 @@ namespace HomeServices.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Customer>("GetCustomers", mergeOption);
         }
+    
+        public virtual ObjectResult<Customer> GetCustomerById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Customer>("GetCustomerById", idParameter);
+        }
+    
+        public virtual ObjectResult<Customer> GetCustomerById(Nullable<int> id, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Customer>("GetCustomerById", mergeOption, idParameter);
+        }
+    
+        public virtual ObjectResult<Department> GetDepartmentById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Department>("GetDepartmentById", idParameter);
+        }
+    
+        public virtual ObjectResult<Department> GetDepartmentById(Nullable<int> id, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Department>("GetDepartmentById", mergeOption, idParameter);
+        }
+    
+        public virtual ObjectResult<Employee> GetEmployeeById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetEmployeeById", idParameter);
+        }
+    
+        public virtual ObjectResult<Employee> GetEmployeeById(Nullable<int> id, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetEmployeeById", mergeOption, idParameter);
+        }
+    
+        public virtual ObjectResult<Order> GetOrderById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Order>("GetOrderById", idParameter);
+        }
+    
+        public virtual ObjectResult<Order> GetOrderById(Nullable<int> id, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Order>("GetOrderById", mergeOption, idParameter);
+        }
+    
+        public virtual ObjectResult<Service> GetServiceById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("GetServiceById", idParameter);
+        }
+    
+        public virtual ObjectResult<Service> GetServiceById(Nullable<int> id, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("GetServiceById", mergeOption, idParameter);
+        }
     }
 }
