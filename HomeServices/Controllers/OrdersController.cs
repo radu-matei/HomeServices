@@ -4,12 +4,14 @@ using System.Net;
 using System.Web.Mvc;
 using HomeServices.Models;
 using Microsoft.AspNet.Identity;
+using HomeServices.AppServices;
 
 namespace HomeServices.Controllers
 {
     public class OrdersController : Controller
     {
         private HomeServicesEntities db = new HomeServicesEntities();
+        private JobAssigner jobAssigner = new JobAssigner();
 
         // GET: Orders
         public ActionResult Index()
@@ -58,6 +60,9 @@ namespace HomeServices.Controllers
             {
                 db.Orders.Add(order);
                 db.SaveChanges();
+
+                jobAssigner.AssignJob(order.Id);
+
                 return RedirectToAction("Index");
             }
 
