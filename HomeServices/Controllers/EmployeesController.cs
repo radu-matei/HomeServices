@@ -48,8 +48,22 @@ namespace HomeServices.Controllers
             {
                 db.Employees.Add(employee);
                 db.SaveChanges();
+                
+                foreach (var service in db.Services.Where(s => s.DepartmentId == employee.DepartmentId))
+                {
+                    db.EmployeeServices.Add(new EmployeeService()
+                    {
+                        EmployeeId = employee.Id,
+                        ServiceId = service.Id
+                    });
+                }
+
+                    db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
+
 
             ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", employee.DepartmentId);
             return View(employee);
