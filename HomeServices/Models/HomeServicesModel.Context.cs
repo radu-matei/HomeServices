@@ -192,5 +192,23 @@ namespace HomeServices.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetServiceEmployees", mergeOption, serviceIdParameter);
         }
+    
+        public virtual ObjectResult<Order> GetUserOrders(string applicationUserId)
+        {
+            var applicationUserIdParameter = applicationUserId != null ?
+                new ObjectParameter("ApplicationUserId", applicationUserId) :
+                new ObjectParameter("ApplicationUserId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Order>("GetUserOrders", applicationUserIdParameter);
+        }
+    
+        public virtual ObjectResult<Order> GetUserOrders(string applicationUserId, MergeOption mergeOption)
+        {
+            var applicationUserIdParameter = applicationUserId != null ?
+                new ObjectParameter("ApplicationUserId", applicationUserId) :
+                new ObjectParameter("ApplicationUserId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Order>("GetUserOrders", mergeOption, applicationUserIdParameter);
+        }
     }
 }

@@ -124,7 +124,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeServices_Employees">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeeService" Type="Self.EmployeeService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -136,7 +138,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeeServices_Services">
-          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeeService" Type="Self.EmployeeService" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Service">
@@ -228,6 +232,9 @@
           <Parameter Name="ServiceId" Type="int" Mode="In" />
         </Function>
         <Function Name="GetServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetUserOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationUserId" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="InsertCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ApplicationUserId" Type="nvarchar" Mode="In" />
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
@@ -609,6 +616,9 @@
           <FunctionImport Name="GetServiceEmployees" EntitySet="Employees" ReturnType="Collection(HomeServicesModel.Employee)">
           <Parameter Name="ServiceId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="GetUserOrders" EntitySet="Orders" ReturnType="Collection(HomeServicesModel.Order)">
+            <Parameter Name="ApplicationUserId" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -830,6 +840,7 @@
           <FunctionImportMapping FunctionImportName="GetOrderById" FunctionName="HomeServicesModel.Store.GetOrderById" />
           <FunctionImportMapping FunctionImportName="GetServiceById" FunctionName="HomeServicesModel.Store.GetServiceById" />
           <FunctionImportMapping FunctionImportName="GetServiceEmployees" FunctionName="HomeServicesModel.Store.GetServiceEmployees" />
+          <FunctionImportMapping FunctionImportName="GetUserOrders" FunctionName="HomeServicesModel.Store.GetUserOrders" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
