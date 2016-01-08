@@ -4,4 +4,52 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<h1 id="db-project-home-services">DB Project - Home Services</h1>
+
+
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This is an MVC web application used for working with an SQL database. The application uses authentication and is hosted on the Microsoft Azure Cloud.</p>
+
+<p>The project was developed using Microsoft Visual Studio 2015, MS SQL Server 2014, Microsoft Azure, Github and Trello. (I will discuss each of these technologies).</p>
+
+<h2 id="the-database">The Database</h2>
+
+<p>For the database environment, I chose an MS SQL Server 2014 machine that is hosted in the Azure Cloud - the public address of the server is <code>sql-server-im2ru88m.cloudapp.net</code></p>
+
+<p>The first main task was to configure the server to accept connections from remote clients, to configure the TCP connection and setup an admin user for connecting to the databases.</p>
+
+<p>Then, I created the database structure for this application.</p>
+
+<p>
+    <img src="~/EntityDesignerDiagram.bmp" alt="database diagram" title=""> <br>
+    The database has the following tables: <code>Customer</code>, <code>Department,</code>  <code>Employee,</code> <code>Order,</code> <code>Service</code> and two link tables,  <code>EmployeeService</code> and <code>EmployeePlanification</code>.
+</p>
+
+<p>The fields for each table can be seen either in the diagram or directly from the database.</p>
+
+<p>(I also used an <code>AspNet.Users</code> table to map the web application user to the business user).</p>
+
+<p><strong>Relationships</strong></p>
+
+<p>1 - 1 relationship: <code>Customer</code> - <code>AspNet.Users</code></p>
+
+<p>
+    1 - many relationships : <code>Department</code> - <code>Employee</code>, <code>Department -</code> <code>Service</code>, <code>Service</code> - <code>Order</code> <br>
+    many - many relationship: <code>Employee</code> - <code>Service</code>
+</p>
+
+<p><strong>Stored Procedures</strong></p>
+
+<p>In order to be able to use the database with an MVC web application, I used 28 stored procedures (so far), used to insert, update, delete or select entities from the database.</p>
+
+<h2 id="the-web-application">The web application</h2>
+
+<p>The application is built on the MVC framework, has authentication and authorization and is published using the Microsoft Azure Cloud, on <a href="http://home-services.azurewebsites.net">http://home-services.azurewebsites.net</a> </p>
+
+<p>The source code of the application can be found on GitHub, where I commited each step when developing the application.</p>
+
+<p>The structure of the application follows the Model-View-Controller principles.</p>
+
+<p>I created the models automatically using Entity Framework, based on each table from the database.</p>
