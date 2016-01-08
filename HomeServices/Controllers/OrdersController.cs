@@ -20,6 +20,13 @@ namespace HomeServices.Controllers
             return View(orders.ToList());
         }
 
+        public ActionResult UserOrders()
+        {
+            var orders = db.GetUserOrders(User.Identity.GetUserId());
+
+            return View(orders);
+        }
+
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
