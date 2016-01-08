@@ -222,6 +222,7 @@
       <DependentUpon>HomeServicesModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AppServices\JobAssigner.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
