@@ -84,7 +84,9 @@
           <Property Name="HourlyRate" Type="decimal" Precision="8" Scale="2" Nullable="false" />
         </EntityType>
         <Association Name="FK_EmployeePlanification_Employees">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeePlanification" Type="Self.EmployeePlanification" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -96,7 +98,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmployeePlanification_Orders">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EmployeePlanification" Type="Self.EmployeePlanification" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
@@ -158,7 +162,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Customers">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -211,13 +217,15 @@
         </Function>
         <Function Name="GetEmployeePlanification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="GetEmployeeServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetOrderById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="GetOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetServiceById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetServiceEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ServiceId" Type="int" Mode="In" />
         </Function>
         <Function Name="GetServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="InsertCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -584,19 +592,22 @@
           <FunctionImport Name="GetServices" EntitySet="Services" ReturnType="Collection(HomeServicesModel.Service)" />
           <FunctionImport Name="GetCustomers" EntitySet="Customers" ReturnType="Collection(HomeServicesModel.Customer)" />
           <FunctionImport Name="GetCustomerById" EntitySet="Customers" ReturnType="Collection(HomeServicesModel.Customer)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetDepartmentById" EntitySet="Departments" ReturnType="Collection(HomeServicesModel.Department)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetEmployeeById" EntitySet="Employees" ReturnType="Collection(HomeServicesModel.Employee)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetOrderById" EntitySet="Orders" ReturnType="Collection(HomeServicesModel.Order)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetServiceById" EntitySet="Services" ReturnType="Collection(HomeServicesModel.Service)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetServiceEmployees" EntitySet="Employees" ReturnType="Collection(HomeServicesModel.Employee)">
+          <Parameter Name="ServiceId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -706,6 +717,7 @@
                   <ScalarProperty Name="LastName" ParameterName="LastName" />
                   <ScalarProperty Name="FirstName" ParameterName="FirstName" />
                   <ScalarProperty Name="DepartmentId" ParameterName="DepartmentId" />
+                  <ResultBinding Name="Id" ColumnName="Id" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="HomeServicesModel.Store.UpdateEmployee">
                   <ScalarProperty Name="Salary" ParameterName="Salary" Version="Current" />
@@ -764,6 +776,7 @@
                   <ScalarProperty Name="BeginDateTime" ParameterName="BeginDateTime" />
                   <ScalarProperty Name="ServiceId" ParameterName="ServiceId" />
                   <ScalarProperty Name="CustomerId" ParameterName="CustomerId" />
+                  <ResultBinding Name="Id" ColumnName="Id" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="HomeServicesModel.Store.UpdateOrder">
                   <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" Version="Current" />
@@ -816,6 +829,7 @@
           <FunctionImportMapping FunctionImportName="GetEmployeeById" FunctionName="HomeServicesModel.Store.GetEmployeeById" />
           <FunctionImportMapping FunctionImportName="GetOrderById" FunctionName="HomeServicesModel.Store.GetOrderById" />
           <FunctionImportMapping FunctionImportName="GetServiceById" FunctionName="HomeServicesModel.Store.GetServiceById" />
+          <FunctionImportMapping FunctionImportName="GetServiceEmployees" FunctionName="HomeServicesModel.Store.GetServiceEmployees" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

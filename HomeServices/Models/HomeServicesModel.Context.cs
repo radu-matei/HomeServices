@@ -174,5 +174,23 @@ namespace HomeServices.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Service>("GetServiceById", mergeOption, idParameter);
         }
+    
+        public virtual ObjectResult<Employee> GetServiceEmployees(Nullable<int> serviceId)
+        {
+            var serviceIdParameter = serviceId.HasValue ?
+                new ObjectParameter("ServiceId", serviceId) :
+                new ObjectParameter("ServiceId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetServiceEmployees", serviceIdParameter);
+        }
+    
+        public virtual ObjectResult<Employee> GetServiceEmployees(Nullable<int> serviceId, MergeOption mergeOption)
+        {
+            var serviceIdParameter = serviceId.HasValue ?
+                new ObjectParameter("ServiceId", serviceId) :
+                new ObjectParameter("ServiceId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Employee>("GetServiceEmployees", mergeOption, serviceIdParameter);
+        }
     }
 }
